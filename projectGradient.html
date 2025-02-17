@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Gradient</title>
+    <link rel="stylesheet" href="gradient.css">
+</head>
+
+<body>
+    <section>
+        <div>
+            <button id="myButton">Random Gradient</button>
+            <button id="myButton1">Random Right Color</button>
+        </div>
+        <h2>Copy your code here</h2>
+        <div class="copyCode">
+            background-image: linear-gradient(to right,)
+        </div>
+    </section>
+</body>
+<script>
+    let btn1 = document.getElementById("myButton");
+    let btn2 = document.getElementById("myButton1");
+    let copydiv = document.querySelector(".copyCode");
+
+    const hexValues = () => {
+        let myHexaValues = "0123456789abcdef";
+        let colors = "#";
+        for (let i = 0; i < 6; i++) {
+            colors += myHexaValues[Math.floor(Math.random() * 16)];
+        }
+        return colors;
+    };
+
+    const handleButton1 = () => {
+        let rgb1 = hexValues();
+        let rgb2 = hexValues();
+        console.log(`Left: ${rgb1}, Right: ${rgb2}`);
+        document.body.style.backgroundImage = `linear-gradient(to right, ${rgb1}, ${rgb2})`;
+        copydiv.innerHTML = `background-image: linear-gradient(to right, ${rgb1}, ${rgb2});`;
+    };
+
+    const handleButton2 = () => {
+        let rgb2 = hexValues();
+        console.log(`Right only: ${rgb2}`);
+        document.body.style.backgroundImage = `linear-gradient(to right, #ffffff, ${rgb2})`;
+        copydiv.innerHTML = `background-image: linear-gradient(to right, #ffffff, ${rgb2});`;
+    };
+
+    btn1.addEventListener("click", handleButton1);
+    btn2.addEventListener("click", handleButton2);
+</script>
+
+</html>
